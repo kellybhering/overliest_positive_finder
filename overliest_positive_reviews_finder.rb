@@ -7,8 +7,8 @@ class OverliestPositiveReviewsFinder
       converter = review_site[:converter]
       score_calculator = review_site[:score_calculator]
 
-      scraper_hash = scraper.new(review_site[:scraper][:config]).scrap
-      reviews = converter.convert(hash: scraper_hash)
+      reviews_hashes_array = scraper.new(review_site[:scraper][:config]).scrap
+      reviews = converter.convert(reviews_hashes_array: reviews_hashes_array)
       reviews_with_score = score_calculator.input_score_to(reviews: reviews)
     end
   end

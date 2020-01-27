@@ -2,7 +2,7 @@
 require './app/scraper/base'
 require './app/scraper/dealer_rater'
 require './app/converter/html_to_dealer_rater_hash'
-require './app/converter/dealer_rater_hash_to_reviews'
+require './app/converter/dealer_rater_hashes_array_to_reviews'
 require './app/score_calculator/dealer_rater'
 require './app/dto/review/base'
 require './app/dto/review/dealer_rater'
@@ -18,7 +18,7 @@ AVAILABLE_REVIEW_SITES = {
         },
         executor: Scraper::DealerRater
       },
-      converter: Converter::DealerRaterHashToReviews,
+      converter: Converter::DealerRaterHashesArrayToReviews,
       score_calculator: ScoreCalculator::DealerRater
   }
 }
