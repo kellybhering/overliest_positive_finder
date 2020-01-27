@@ -16,14 +16,10 @@ module Scraper
 
     private
 
-    def get_html
+    def get_html(url)
       #TODO: Error handling
       response = Faraday.get(url)
       response.body
-    end
-
-    def url
-      raise NotImplementedError
     end
   end
 end
