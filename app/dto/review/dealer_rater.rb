@@ -3,17 +3,17 @@
 module DTO
   class DealerRaterReview < BaseReview
     attr_reader :date, :title, :text, :number_of_employees_worked_with,
-                :has_photo, :review_rating, :detailed_review_rating
+                :has_photo, :rating, :detailed_rating
    
-    def initialize(date:, title:, text:, number_of_employees_worked_with:, has_photo:, review_rating:,
-      detailed_review_rating:)
+    def initialize(date:, title:, text:, number_of_employees_worked_with:, has_photo:, rating:,
+      detailed_rating:)
       @date = date 
       @title = title 
       @text = text 
       @number_of_employees_worked_with = number_of_employees_worked_with 
       @has_photo = has_photo 
-      @review_rating = review_rating 
-      @detailed_review_rating = detailed_review_rating
+      @rating = rating 
+      @detailed_rating = detailed_rating
     end
   end
 end

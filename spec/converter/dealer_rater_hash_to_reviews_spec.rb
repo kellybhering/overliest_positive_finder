@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-#TODO improve file requirement
-require './application'
+
+require 'spec_helper'
 
 describe Converter::DealerRaterHashToReviews do
   describe '.convert' do
