@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 module DTO
-  class BaseReview
-    attr_accessor :overliest_positive_score
+  module Review
+    class Base
+      attr_accessor :score
+    end
   end
 end

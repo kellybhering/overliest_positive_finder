@@ -79,7 +79,7 @@ describe Converter::DealerRaterHashesArrayToReviews do
     end
 
     it 'a review should contain the overliest positive score with nil value' do
-      expect(convert_to_reviews[0].overliest_positive_score).to eq(nil)
+      expect(convert_to_reviews[0].score).to eq(nil)
     end
   end
 end
