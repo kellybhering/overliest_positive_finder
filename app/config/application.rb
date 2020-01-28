@@ -1,4 +1,3 @@
-#TODO: improve file requirement
 require './app/scraper/base'
 require './app/scraper/dealer_rater'
 require './app/converter/html_to_dealer_rater_hash'
