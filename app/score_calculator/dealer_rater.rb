@@ -72,9 +72,10 @@ module ScoreCalculator
 
       def overly_positive_matches_in_text
         overly_positive_matches_for_text = [
-          { regex: /lord/, weight: 2 },
-          { regex: /miracle/, weight: 2 },
-          { regex: /(?=.*(greatest|nicest|best))(?=.*(salesmen|salesman|saleswoman|sellers|salespeople))/, weight: 4 }
+          { regex: /lord/, weight: 3 },
+          { regex: /(?=.*(perfect))(?=.*they)/, weight: 4 },
+          { regex: /miracle/, weight: 4 },
+          { regex: /(?=.*(greatest|nicest|best))(?=.*(salesmen|salesman|saleswoman|sellers|salespeople))/, weight: 5 }
         ]
 
         overly_positive_matches_for_text.map do |matching|

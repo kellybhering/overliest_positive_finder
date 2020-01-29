@@ -6,14 +6,14 @@ This app is your helper to detect overly positive reviews over the web.
 
 Through checking some rules in an specific review, it's is capable to compute an score to it. Scores goes from *0* to *100*. The *lesser* the score, the *"overliest" positive* the review is.
 
-The top 5 *"overliest positive"* reviews are printed on you console then.
+The top 3 *"overliest positive"* reviews are printed on you console then.
 
 
 _Dealer Rater Example_
 
 Running the application with no configuration set, Dealer Rater's Review Site will be the target.
 
-At the end, this app will print Dealer Rater's 5 "overliest" review on your screen.
+At the end, this app will print Dealer Rater's 3 "overliest" review on your screen.
 
 Dealer Rater's score calculations is based on:
 
@@ -27,9 +27,10 @@ Dealer Rater's score calculations is based on:
         c-) It matches /(?=.*best)(?=.*place)(?=.*(car|vehicle))/ and 4 score points are lost (the words `best`,`place` and `car` or `vehicle` have to be in the title )
 
     4-) Text word matching: it's possible to match some regex patterns to the review text. Each pattern has a weight telling how many score points are going to be lost if there's a match. Current text's checked pattern matchers are:
-        a-) It matches `/lord/` and 2 score points are lost (the word `lord` has to be in the title)
-        b-) It matches `/miracle/` and 2 score points are lost (the word `miracle` has to be in the title)
-        c-) It matches `/(?=.*(greatest|nicest|best))(?=.*(salesmen|salesman|saleswoman|sellers|salespeople))/` and 4 score points are lost (words `greatest or nicest or best` and `salesmen or salesman or saleswoman or sellers or salespeople` have to be in the text)
+        a-) It matches `/lord/` and 3 score points are lost (the word `lord` has to be in the text)
+        b-) It matches `/miracle/` and 4 score points are lost (the word `miracle` has to be in the text)
+        b-) It matches `/perfect/` and 4 score points are lost (the word `perfect` has to be in the text)
+        c-) It matches `/(?=.*(greatest|nicest|best))(?=.*(salesmen|salesman|saleswoman|sellers|salespeople))/` and 5 score points are lost (words `greatest or nicest or best` and `salesmen or salesman or saleswoman or sellers or salespeople` have to be in the text)
 
 
 # Running the application

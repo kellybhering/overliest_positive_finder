@@ -48,8 +48,8 @@ describe ScoreCalculator::DealerRater do
       let(:title) { 'Best and great place to buy a car' }
       let(:text) { 'Thank lord, this place is a miracle. It has the greatest salesmen' }
 
-      it 'should score 65' do
-        expect(review_score).to eq(65)
+      it 'should score 61' do
+        expect(review_score).to eq(61)
       end
     end
 
@@ -122,27 +122,35 @@ describe ScoreCalculator::DealerRater do
     end
 
     context 'with a review matching the text rule for overly positive score' do
-      context 'with a single weight 2 regex' do
+      context 'with a single weight 3 regex' do
         let(:text) { 'Thanks lord!' }
 
-        it 'should score 98' do
-          expect(review_score).to eq(98)
+        it 'should score 97' do
+          expect(review_score).to eq(97)
         end
       end
 
-      context 'with two weight 2 regexes' do
+      context 'with one weight 3 and one weight 4 regexes' do
         let(:text) { 'Thanks lord! This is a miracle' }
 
-        it 'should score 96' do
-          expect(review_score).to eq(96)
+        it 'should score 93' do
+          expect(review_score).to eq(93)
         end
       end
 
-      context 'with two weight 2 and one weight 4 regexes' do
+      context 'with one weight 3 and two weight 4 regexes' do
+        let(:text) { 'Thanks lord! This is a miracle, they are perfect' }
+
+        it 'should score 89' do
+          expect(review_score).to eq(89)
+        end
+      end
+
+      context 'with one weight 3, one weight 4 and one weight 5 regexes' do
         let(:text) { 'Thanks lord! This is a miracle. They have the nicest top ever salesman' }
 
-        it 'should score 92' do
-          expect(review_score).to eq(92)
+        it 'should score 88' do
+          expect(review_score).to eq(88)
         end
       end
     end

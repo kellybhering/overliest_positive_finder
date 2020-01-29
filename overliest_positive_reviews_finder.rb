@@ -17,8 +17,8 @@ class OverliestPositiveReviewsFinder
     private
 
     def print_overliest_positive_reviews(reviews_with_score)
-      puts "*** DEALER RATER's 5 \"OVERLIEST\" POSITIVE REVIEW ARE ***\r\n\r\n"
-      (0..4).each do |index|
+      puts "*** DEALER RATER's TOP 3 \"OVERLIEST\" POSITIVE REVIEW ARE ***\r\n\r\n"
+      (0..2).each do |index|
         puts (unless reviews_with_score[index].nil?
                 reviews_with_score[index].to_s + "\r\n\r\n\r\n\r\n\r\n"
               end)
