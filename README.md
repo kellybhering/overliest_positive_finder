@@ -81,12 +81,21 @@ Once installed run these commands from the project's directory to set it up:
 
 Now you just have to use the command ```ruby app.rb``` to run it or ```bundle exec rspec``` to run the tests.
 
+# How to extend it?
+
+This app is prepared to work with others review sites. To implement a new you, it's as simples as:
+
+    1-) Configuring the new site on config/application.rb
+    2-) Implementing its scraper
+    3-) Implementing its HTML to Hash and Hash to Review converters
+    4-) Implementing its Review representation with to_s defined
+    5-) Implementing its score calculator
+    6-) Calling OverliestPositiveReviewsFinder.call with passing the new review site configuration
+
 
 # Improvements needed
 
-
-1-) Parameterize score rules outside the file code
-2-) Error handling ^^
-3-) Parameterize how many reviews are going to be printed
-4-) Check why VCR is not working properly
-5-) Print review's detailed rating
+    1-) Parameterize score rules outside the file code
+    2-) Error handling
+    3-) Parameterize how many reviews are going to be printed
+    4-) Check why VCR is not working properly

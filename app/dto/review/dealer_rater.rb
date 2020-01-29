@@ -22,7 +22,12 @@ module DTO
         "#{date} [rating #{rating}]\r\n"\
         "(#{has_photo ? 'with' : 'without'} photo | #{number_of_employees_worked_with} #{number_of_employees_worked_with == 1 ? 'employee' : 'employees'} worked with)\r\n\r\n"\
         "Title: #{title}\r\n\r\n"\
-        "Review: #{text}"
+        "Review: #{text}\r\n"\
+        "{ customer_service: #{detailed_rating[:customer_service]}, "\
+        "quality_of_work: #{detailed_rating[:quality_of_work]}, "\
+        "friendliness: #{detailed_rating[:friendliness]}, "\
+        "pricing: #{detailed_rating[:pricing]}, "\
+        "overall_experience: #{detailed_rating[:overall_experience]} }"
       end
     end
   end
