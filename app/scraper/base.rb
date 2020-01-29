@@ -16,8 +16,8 @@ module Scraper
 
     private
 
+    # Faraday was used because open() and HTTParty didn't work no this site
     def get_html(url)
-      #TODO: Error handling
       response = Faraday.get(url)
       response.body
     end

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-#TODO: encapsulate magic weight number and regexes, making them parameterizable
 module ScoreCalculator
   class DealerRater
     class << self
