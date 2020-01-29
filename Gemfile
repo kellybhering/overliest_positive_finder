@@ -9,3 +9,7 @@ group :test do
   gem 'webmock',          require: false
   gem 'vcr', '~> 5.0.0'
 end
+
+group :development do
+  gem 'byebug'
+end

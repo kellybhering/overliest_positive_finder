@@ -9,7 +9,11 @@ class OverliestPositiveReviewsFinder
 
       reviews_hashes_array = scraper.new(review_site[:scraper][:config]).scrap
       reviews = converter.convert(reviews_hashes_array: reviews_hashes_array)
-      reviews_with_score = score_calculator.input_score_to(reviews: reviews)
+      reviews_with_score = score_calculator.input_score_to(reviews: reviews, sort_type: :asc)
+
+      (0..4).each do |index|
+        puts (reviews_with_score[index].to_s + "\r\n\r\n\r\n\r\n\r\n" unless reviews_with_score[index].nil? )
+      end
     end
   end
 end

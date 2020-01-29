@@ -4,7 +4,9 @@ require 'spec_helper'
 
 describe ScoreCalculator::DealerRater do
   describe '.input_score_to' do
-    subject(:input_score) { described_class.input_score_to(reviews: reviews) }
+    subject(:input_score) { described_class.input_score_to(reviews: reviews, sort_type: sort_type) }
+
+    let(:sort_type) { nil }
 
     let(:reviews) { [DTO::Review::DealerRater.new(dealer_rater_review_hash)] }
 
@@ -144,5 +146,54 @@ describe ScoreCalculator::DealerRater do
         end
       end
     end
-  end  
+
+    context 'with sort' do
+      let(:review_hash_91) do
+        dealer_rater_review_hash.merge({
+          detailed_rating: {
+            customer_service: 50,
+            quality_of_work: 50,
+            friendliness: 50,
+            pricing: 50,
+            overall_experience: 50
+          }
+        })
+      end
+
+      let(:review_hash_96) do
+        dealer_rater_review_hash.merge({
+          title: 'The best and great'
+        })
+      end
+
+      let(:review_score_91) { DTO::Review::DealerRater.new(review_hash_91) }
+      let(:review_score_96) { DTO::Review::DealerRater.new(review_hash_96) }
+
+      context 'when ascending' do
+        let(:sort_type) { :asc }
+        let(:reviews) { [review_score_96, review_score_91] }
+
+        it 'should return an array with score ascending order' do
+          expect(input_score.map { |review| review.score }).to eq([91, 96])
+        end
+      end
+
+      context 'when descending' do
+        let(:sort_type) { :desc }
+        let(:reviews) { [review_score_96, review_score_91] }
+
+        it 'should return an array with score descending order' do
+          expect(input_score.map { |review| review.score }).to eq([96, 91])
+        end
+      end
+
+      context 'when none' do
+        let(:reviews) { [review_score_91, review_score_96] }
+
+        it 'should return the same order' do
+          expect(input_score.map { |review| review.score }).to eq([91, 96])
+        end
+      end
+    end
+  end
 end

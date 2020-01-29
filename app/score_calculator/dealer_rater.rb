@@ -4,12 +4,14 @@
 module ScoreCalculator
   class DealerRater
     class << self
-      def input_score_to(reviews:)
-        reviews.map do |review|
+      def input_score_to(reviews:, sort_type: nil)
+        reviews_with_score = reviews.map do |review|
           review_clone = review.clone
           review_clone.score = calculate_score(review_clone)
           review_clone
         end
+
+        sort(reviews_with_score, sort_type)
       end
     
       private
@@ -77,6 +79,12 @@ module ScoreCalculator
         overly_positive_matches_for_text.map do |matching|
           matching if @review.text.downcase.match(matching[:regex])
         end.compact
+      end
+
+      def sort(reviews_with_score, type)
+        return reviews_with_score.sort_by{ |obj| obj.score } if type == :asc
+        return reviews_with_score.sort_by{ |obj| obj.score }.reverse if type == :desc
+        reviews_with_score
       end
     end
   end
