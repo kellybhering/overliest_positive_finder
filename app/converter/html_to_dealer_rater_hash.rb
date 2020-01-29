@@ -42,7 +42,7 @@ module Converter
     end
 
     def review_title
-      @review_node.children[5].children[3].children[1].content.gsub("\n",'').gsub("\r",'').strip
+      @review_node.children[5].children[3].children[1].content.gsub("\n",'').gsub("\r",'').gsub('"','').strip
     end
 
     def review_text

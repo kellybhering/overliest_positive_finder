@@ -18,7 +18,7 @@ describe Converter::HtmlToDealerRaterHash do
       end
 
       it 'a review hash should contain a title' do
-        expect(add_reviews[0][:title]).to eq('"Thank you McKaig and David Varner for all your hard work..."')
+        expect(add_reviews[0][:title]).to eq('Thank you McKaig and David Varner for all your hard work...')
       end
 
       it 'a review hash should contain a text' do
