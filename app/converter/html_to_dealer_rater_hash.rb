@@ -42,19 +42,19 @@ module Converter
     end
 
     def review_title
-      @review_node.children[5].children[3].children[1].content.gsub("\n",'').gsub("\r",'').gsub('"','').strip
+      @review_node.children[5].children[3].children[1].content.gsub("\n", '').gsub("\r", '').gsub('"', '').strip
     end
 
     def review_text
-      @review_node.children[5].children[7].children[1].content.gsub("\n",'').gsub("\r",'').gsub('Read More', '').strip
+      @review_node.children[5].children[7].children[1].content.gsub("\n", '').gsub("\r", '').gsub('Read More', '').strip
     end
 
     def review_number_of_employees_worked_with
-      @review_node.children[5].children[15].to_s.scan("data-emp-id").size
+      @review_node.children[5].children[15].to_s.scan('data-emp-id').size
     end
 
     def review_has_photo?
-      @review_node.children[5].to_s.scan('lotshotPhoto').size > 0
+      !@review_node.children[5].to_s.scan('lotshotPhoto').empty?
     end
 
     def review_rating
@@ -73,4 +73,4 @@ module Converter
       }
     end
   end
-end  
+end

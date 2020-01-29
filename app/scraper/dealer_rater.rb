@@ -20,7 +20,7 @@ module Scraper
     end
 
     def dealer_title
-      @dealer_title ||=  @config[:dealer_title]
+      @dealer_title ||= @config[:dealer_title]
     end
 
     def dealer_page_code

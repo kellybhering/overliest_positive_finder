@@ -43,14 +43,14 @@ describe ScoreCalculator::DealerRater do
           friendliness: 50,
           pricing: 50,
           overall_experience: 50
-        }        
+        }
       end
       let(:title) { 'Best and great place to buy a car' }
       let(:text) { 'Thank lord, this place is a miracle. It has the greatest salesmen' }
 
       it 'should score 65' do
         expect(review_score).to eq(65)
-      end      
+      end
     end
 
     context 'with a review matching the rating rule for overly positive score' do
@@ -58,7 +58,7 @@ describe ScoreCalculator::DealerRater do
 
       it 'should score 90' do
         expect(review_score).to eq(90)
-      end 
+      end
     end
 
     context 'with a review matching the detailed rating rule for overly positive score' do
@@ -70,9 +70,9 @@ describe ScoreCalculator::DealerRater do
             friendliness: 50,
             pricing: 50,
             overall_experience: 50
-          }        
+          }
         end
-  
+
         it 'should score 91' do
           expect(review_score).to eq(91)
         end
@@ -86,13 +86,13 @@ describe ScoreCalculator::DealerRater do
             friendliness: 0,
             pricing: 0,
             overall_experience: 50
-          }        
+          }
         end
-  
+
         it 'should score 91' do
           expect(review_score).to eq(91)
         end
-      end       
+      end
     end
 
     context 'with a review matching the title rule for overly positive score' do
@@ -106,7 +106,7 @@ describe ScoreCalculator::DealerRater do
 
       context 'with two weight 2 regexes' do
         let(:title) { 'The best and great' }
-        
+
         it 'should score 96' do
           expect(review_score).to eq(96)
         end
@@ -114,7 +114,7 @@ describe ScoreCalculator::DealerRater do
 
       context 'with two weight 2 and one weight 4 regexes' do
         let(:title) { 'The best and great. Best best place to bye a car' }
-        
+
         it 'should score 92' do
           expect(review_score).to eq(92)
         end
@@ -124,7 +124,7 @@ describe ScoreCalculator::DealerRater do
     context 'with a review matching the text rule for overly positive score' do
       context 'with a single weight 2 regex' do
         let(:text) { 'Thanks lord!' }
-  
+
         it 'should score 98' do
           expect(review_score).to eq(98)
         end
@@ -132,7 +132,7 @@ describe ScoreCalculator::DealerRater do
 
       context 'with two weight 2 regexes' do
         let(:text) { 'Thanks lord! This is a miracle' }
-        
+
         it 'should score 96' do
           expect(review_score).to eq(96)
         end
@@ -140,7 +140,7 @@ describe ScoreCalculator::DealerRater do
 
       context 'with two weight 2 and one weight 4 regexes' do
         let(:text) { 'Thanks lord! This is a miracle. They have the nicest top ever salesman' }
-        
+
         it 'should score 92' do
           expect(review_score).to eq(92)
         end
@@ -149,7 +149,7 @@ describe ScoreCalculator::DealerRater do
 
     context 'with sort' do
       let(:review_hash_91) do
-        dealer_rater_review_hash.merge({
+        dealer_rater_review_hash.merge(
           detailed_rating: {
             customer_service: 50,
             quality_of_work: 50,
@@ -157,13 +157,13 @@ describe ScoreCalculator::DealerRater do
             pricing: 50,
             overall_experience: 50
           }
-        })
+        )
       end
 
       let(:review_hash_96) do
-        dealer_rater_review_hash.merge({
+        dealer_rater_review_hash.merge(
           title: 'The best and great'
-        })
+        )
       end
 
       let(:review_score_91) { DTO::Review::DealerRater.new(review_hash_91) }
@@ -174,7 +174,7 @@ describe ScoreCalculator::DealerRater do
         let(:reviews) { [review_score_96, review_score_91] }
 
         it 'should return an array with score ascending order' do
-          expect(input_score.map { |review| review.score }).to eq([91, 96])
+          expect(input_score.map(&:score)).to eq([91, 96])
         end
       end
 
@@ -183,7 +183,7 @@ describe ScoreCalculator::DealerRater do
         let(:reviews) { [review_score_96, review_score_91] }
 
         it 'should return an array with score descending order' do
-          expect(input_score.map { |review| review.score }).to eq([96, 91])
+          expect(input_score.map(&:score)).to eq([96, 91])
         end
       end
 
@@ -191,7 +191,7 @@ describe ScoreCalculator::DealerRater do
         let(:reviews) { [review_score_91, review_score_96] }
 
         it 'should return the same order' do
-          expect(input_score.map { |review| review.score }).to eq([91, 96])
+          expect(input_score.map(&:score)).to eq([91, 96])
         end
       end
     end

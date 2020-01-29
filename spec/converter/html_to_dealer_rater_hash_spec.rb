@@ -11,7 +11,7 @@ describe Converter::HtmlToDealerRaterHash do
 
       it 'shoud add 10 reviews' do
         expect(add_reviews.size).to eq(10)
-      end  
+      end
 
       it 'a review hash should contain a date' do
         expect(add_reviews[0][:date]).to eq('January 24, 2020')

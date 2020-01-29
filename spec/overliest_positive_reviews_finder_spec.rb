@@ -11,10 +11,10 @@ describe OverliestPositiveReviewsFinder do
         allow_any_instance_of(Scraper::DealerRater).to receive(:scrap).and_return([dealer_rater_hashes_array])
 
         allow(Converter::DealerRaterHashesArrayToReviews).to receive(:convert)
-          .with({ reviews_hashes_array: [dealer_rater_hashes_array] }).and_return([dealer_rater_reviews_array])
+          .with(reviews_hashes_array: [dealer_rater_hashes_array]).and_return([dealer_rater_reviews_array])
 
         allow(ScoreCalculator::DealerRater).to receive(:input_score_to)
-          .with({reviews: [dealer_rater_reviews_array], sort_type: :asc }).and_return([dealer_rater_reviews_with_score_array])
+          .with(reviews: [dealer_rater_reviews_array], sort_type: :asc).and_return([dealer_rater_reviews_with_score_array])
 
         allow_any_instance_of(DTO::Review::DealerRater).to receive(:to_s).and_return('')
 
@@ -53,13 +53,13 @@ describe OverliestPositiveReviewsFinder do
 
       it 'shoud call the review converter' do
         expect(Converter::DealerRaterHashesArrayToReviews).to receive(:convert)
-          .with({ reviews_hashes_array: [dealer_rater_hashes_array] }).once
+          .with(reviews_hashes_array: [dealer_rater_hashes_array]).once
         print_reviews
       end
 
       it 'should call the score calculator with ascending sorting order' do
         expect(ScoreCalculator::DealerRater).to receive(:input_score_to)
-          .with({ reviews: [dealer_rater_reviews_array], sort_type: :asc }).once
+          .with(reviews: [dealer_rater_reviews_array], sort_type: :asc).once
         print_reviews
       end
 

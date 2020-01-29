@@ -4,7 +4,7 @@ require 'spec_helper'
 
 vcr_options = { cassette_name: 'dealer_rater_html_pages', record: :new_episodes }
 
-describe Scraper::DealerRater, vcr:  vcr_options do
+describe Scraper::DealerRater, vcr: vcr_options do
   describe '#scrap' do
     subject(:scrap_pages) { described_class.new(config).scrap }
 

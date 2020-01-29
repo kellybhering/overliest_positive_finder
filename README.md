@@ -80,3 +80,4 @@ Now you just have to use the command ```ruby app.rb``` to run it or ```bundle ex
 3-) Error handling ^^
 4-) Parameterize how many reviews are going to be printed
 5-) Check why VCR is not working properly
+6-) Print review's detailed rating

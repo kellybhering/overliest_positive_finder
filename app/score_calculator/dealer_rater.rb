@@ -12,17 +12,19 @@ module ScoreCalculator
 
         sort(reviews_with_score, sort_type)
       end
-    
+
       private
-    
+
       def calculate_score(review)
         @review = review
         score = 100
         score -= 10 if max_rating?
-        score -= 9 if detailed_rating_with_max_rating? || detailed_rating_overall_only_and_max_rating?
-        
+        if detailed_rating_with_max_rating? || detailed_rating_overall_only_and_max_rating?
+          score -= 9
+        end
+
         overly_positive_matches_in_title.each { |matching| score -= matching[:weight] }
-        
+
         overly_positive_matches_in_text.each { |matching| score -= matching[:weight] }
 
         score
@@ -52,7 +54,7 @@ module ScoreCalculator
           pricing: 0,
           overall_experience: 50
         }
-        
+
         @review.detailed_rating.eql?(overall_max_rating_only)
       end
 
@@ -81,8 +83,9 @@ module ScoreCalculator
       end
 
       def sort(reviews_with_score, type)
-        return reviews_with_score.sort_by{ |obj| obj.score } if type == :asc
-        return reviews_with_score.sort_by{ |obj| obj.score }.reverse if type == :desc
+        return reviews_with_score.sort_by(&:score) if type == :asc
+        return reviews_with_score.sort_by(&:score).reverse if type == :desc
+
         reviews_with_score
       end
     end
